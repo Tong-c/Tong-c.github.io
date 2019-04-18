@@ -3,17 +3,29 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://example.com/categories/</loc>
+    <loc>https://Tong-c.github.io/posts/first-post/</loc>
+    <lastmod>2019-04-18T09:21:37+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://Tong-c.github.io/posts/</loc>
+    <lastmod>2019-04-18T09:21:37+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://example.com/tags/</loc>
+    <loc>https://Tong-c.github.io/</loc>
+    <lastmod>2019-04-18T09:21:37+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://example.com/</loc>
+    <loc>https://Tong-c.github.io/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://Tong-c.github.io/tags/</loc>
     <priority>0</priority>
   </url>
   
