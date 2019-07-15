@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-cn" >
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+  
+  <meta name="author"
+        content="Zeuk"/>
+
+  
+  <meta name="description" content="单例模式举例 单例模式举例，代码如下 public class Singleton { private Singleton() { } public static Singleton getInstance() { return SingleHolder.singleton; } private static class SingleHolder { private static final Singleton singleton = new Singleton(); } } 正常对象的获取，可以保持对象的单例存在 Singleton instance1 ="/>
+  
+
+  
+  
+  <meta name="keywords" content="Hugo, theme, zozo"/>
+  
+
+  
+  <link rel="canonical" href="https://Tong-c.github.io/posts/%E5%BA%8F%E5%88%97%E5%8C%96%E5%AF%B9%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E7%9A%84%E7%A0%B4%E5%9D%8F/"/>
+
+  
+
+  <title>序列化对单例模式的破坏 &middot; 仝闯</title>
+
+  <link rel="shortcut icon" href="https://Tong-c.github.io/images/favicon.ico"/>
+  <link rel="stylesheet" href="https://Tong-c.github.io/css/animate.min.css"/>
+  <link rel="stylesheet" href="https://Tong-c.github.io/css/remixicon.css"/>
+  <link rel="stylesheet" href="https://Tong-c.github.io/css/zozo.css"/>
+  <link rel="stylesheet" href="https://Tong-c.github.io/css/highlight.css"/>
+
+  
+  
+</head>
+
+<body>
+<div class="main animated">
+  <div class="nav_container animated fadeInDown">
+  <div class="site_nav" id="site_nav">
+    <ul>
+      
+      <li>
+        <a href="/">首页</a>
+      </li>
+      
+      <li>
+        <a href="/posts/">归档</a>
+      </li>
+      
+      <li>
+        <a href="/tags/">标签</a>
+      </li>
+      
+      <li>
+        <a href="/about/">关于</a>
+      </li>
+      
+    </ul>
+  </div>
+  <div class="menu_icon">
+    <a id="menu_icon"><i class="remixicon-links-line"></i></a>
+  </div>
+</div>
+
+  <div class="header animated fadeInDown">
+  <div class="site_title_container">
+    <div class="site_title">
+      <h1>
+        <a href="https://Tong-c.github.io/">
+          <span>仝闯</span>
+          <img src="https://Tong-c.github.io/images/logo.svg"/>
+        </a>
+      </h1>
+    </div>
+    <div class="description">
+      <p class="sub_title"></p>
+      <div class="my_socials">
+        
+        
+        <a href="https://github.com/Tong-c" title="github" target="_blank"><i class="remixicon-github-fill"></i></a>
+        
+        
+        <a href="https://Tong-c.github.io/index.xml" type="application/rss+xml" title="rss" target="_blank"><i class="remixicon-rss-fill"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="content">
+    <div class="post_page">
+      <div class="post animated fadeInDown">
+        <div class="post_title post_detail_title">
+          <h2><a href='/posts/%E5%BA%8F%E5%88%97%E5%8C%96%E5%AF%B9%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E7%9A%84%E7%A0%B4%E5%9D%8F/'>序列化对单例模式的破坏</a></h2>
+          <span class="date">2019.07.15</span>
+        </div>
+        <div class="post_content markdown">
+
+<h4 id="单例模式举例">单例模式举例</h4>
+
+<p>单例模式举例，代码如下</p>
+
+<pre><code class="language-java">public class Singleton {
+
+    private Singleton() {
+    }
+
+    public static Singleton getInstance() {
+        return SingleHolder.singleton;
+    }
+
+    private static class SingleHolder {
+        private static final Singleton singleton = new Singleton();
+    }
+
+}
+</code></pre>
+
+<p>正常对象的获取，可以保持对象的单例存在</p>
+
+<pre><code class="language-java">Singleton instance1 = Singleton.getInstance();
+Singleton instance2 = Singleton.getInstance();
+System.out.println(instance1 == instance2); //输出true
+</code></pre>
+
+<h4 id="序列化对单例的破坏">序列化对单例的破坏</h4>
+
+<p>代码如下</p>
+
+<pre><code class="language-java">package com.tong.t20190713;
+
+import java.io.*;
+
+public class SingletonTest {
+
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+        Singleton instance1 = Singleton.getInstance();
+        Singleton instance2 = Singleton.getInstance();
+        System.out.println(instance1 == instance2); //输出true
+
+        //将对象序列化到文件中
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(&quot;singleton&quot;));
+        oos.writeObject(instance1);
+        oos.close();
+
+        //将文件反序列化到对象
+        File file = new File(&quot;singleton&quot;);
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
+        Singleton instance3 = (Singleton) ois.readObject();
+        System.out.println(instance1 == instance3); //输出false
+    }
+}
+
+</code></pre>
+
+<h4 id="序列化破坏单例的原因">序列化破坏单例的原因</h4>
+
+<p>通过debug，跟踪反序列化的执行过程，关键代码如下</p>
+
+<p><code>OjbectInputStream -&gt; readOrdinaryObject(boolean unshared)</code></p>
+
+<p><img src="https://user-images.githubusercontent.com/14778144/61211715-ebeea600-a732-11e9-91c4-e9b78086b5fa.png" alt="" /></p>
+
+<p>如图片所示，通过反射创建对象，而这也是原因所在，此处反序列化用的是该类的父类的无参构造函数来创建对象。</p>
+
+<h4 id="序列化破坏单例的解决办法">序列化破坏单例的解决办法</h4>
+
+<p>通过添加以下代码即可</p>
+
+<pre><code class="language-java">private Object readResolve() {
+        return getInstance();
+}
+</code></pre>
+
+<p>这个方法可以生效的原因，还是要看代码</p>
+
+<p><code>ObjectInputStream -&gt; readOrdinaryObject(boolean unshared)</code></p>
+
+<p><img src="https://user-images.githubusercontent.com/14778144/61212593-530d5a00-a735-11e9-84f7-c2ccc0a0d24a.png" alt="" /></p>
+
+<p>反序列化的过程中，会检测该类是否包含readResolve方法，如果包含，就会通过反射调用该方法，而我们通过重写该方法，来保证单例不被反序列化破坏。</p>
+
+<p><a href="https://github.com/Tong-c/t_blog_sample/tree/master/src/main/java/com/tong/t20190713">示例代码</a></p>
+</div>
+        <div class="post_footer">
+          
+        </div>
+      </div>
+      
+      
+    </div>
+  </div>
+  <a id="back_to_top" href="#" class="back_to_top"><span>△</span></a>
+</div>
+<footer class="footer">
+  <div class="powered_by">
+    <a href="https://zeuk.me">Designed by Zeuk,</a>
+    <a href="http://www.gohugo.io/">Proudly published with Hugo</a>
+  </div>
+
+  <div class="footer_slogan">
+    <span>我的精神家园</span>
+  </div>
+</footer>
+
+
+
+<script src="https://Tong-c.github.io/js/jquery-3.3.1.min.js"></script>
+<script src="https://Tong-c.github.io/js/zozo.js"></script>
+<script src="https://Tong-c.github.io/js/highlight.pack.js"></script>
+<link  href="https://Tong-c.github.io/css/fancybox.min.css" rel="stylesheet">
+<script src="https://Tong-c.github.io/js/fancybox.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad()</script>
+
+
+
+
+
+
+
+</body>
+</html>

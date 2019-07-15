@@ -28,11 +28,11 @@
 
   <title>仝闯</title>
 
-  <link rel="shortcut icon" href="/images/favicon.ico"/>
-  <link rel="stylesheet" href="/css/animate.min.css"/>
-  <link rel="stylesheet" href="/css/remixicon.css"/>
-  <link rel="stylesheet" href="/css/zozo.css"/>
-  <link rel="stylesheet" href="/css/highlight.css"/>
+  <link rel="shortcut icon" href="https://Tong-c.github.io/images/favicon.ico"/>
+  <link rel="stylesheet" href="https://Tong-c.github.io/css/animate.min.css"/>
+  <link rel="stylesheet" href="https://Tong-c.github.io/css/remixicon.css"/>
+  <link rel="stylesheet" href="https://Tong-c.github.io/css/zozo.css"/>
+  <link rel="stylesheet" href="https://Tong-c.github.io/css/highlight.css"/>
 
   
   
@@ -40,35 +40,40 @@
 
 <body>
 <div class="main animated">
-  <div class="nav_container">
-  <ul class="site_nav">
-    <li><span class="menu_icon"><i class="remixicon-terminal-fill"></i></span></li>
-    
-    <li>
-      <a href="/">首页</a>
-    </li>
-    
-    <li>
-      <a href="/posts/">归档</a>
-    </li>
-    
-    <li>
-      <a href="/tags/">标签</a>
-    </li>
-    
-    <li>
-      <a href="/about/">关于</a>
-    </li>
-    
-  </ul>
+  <div class="nav_container animated fadeInDown">
+  <div class="site_nav" id="site_nav">
+    <ul>
+      
+      <li>
+        <a href="/">首页</a>
+      </li>
+      
+      <li>
+        <a href="/posts/">归档</a>
+      </li>
+      
+      <li>
+        <a href="/tags/">标签</a>
+      </li>
+      
+      <li>
+        <a href="/about/">关于</a>
+      </li>
+      
+    </ul>
+  </div>
+  <div class="menu_icon">
+    <a id="menu_icon"><i class="remixicon-links-line"></i></a>
+  </div>
 </div>
-<div class="header animated fadeInDown">
+
+  <div class="header animated fadeInDown">
   <div class="site_title_container">
     <div class="site_title">
       <h1>
-        <a href="/">
+        <a href="https://Tong-c.github.io/">
           <span>仝闯</span>
-          <img src="/images/logo.svg"/>
+          <img src="https://Tong-c.github.io/images/logo.svg"/>
         </a>
       </h1>
     </div>
@@ -92,13 +97,25 @@
 
 <div class="post animated fadeInDown">
   <div class="post_title">
-    <h2><a href='/posts/%E5%A6%82%E6%AD%A4%E5%A4%8D%E6%9D%82/'>如此复杂</a></h2>
+    <h2><a href='/posts/%E5%BA%8F%E5%88%97%E5%8C%96%E5%AF%B9%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E7%9A%84%E7%A0%B4%E5%9D%8F/'>序列化对单例模式的破坏</a></h2>
   </div>
   
-  <div class="list">
-    <div class="post_content">
-      <p>从未如此复杂过， 后悔、遗憾、嫉妒、悲伤、愤怒、 每天每时每刻， 在各种情绪里煎熬。 可这些情绪加起来， 是痛苦。......</p>
+  <div class="post_footer">
+    <div class="meta">
+      <div class="info">
+        <span class="field">
+          <i class="remixicon-map-pin-time-line"></i>
+          <span class="date">2019.07.15</span>
+        </span>
+        
+      </div>
     </div>
+  </div>
+</div>
+
+<div class="post animated fadeInDown">
+  <div class="post_title">
+    <h2><a href='/posts/%E5%A6%82%E6%AD%A4%E5%A4%8D%E6%9D%82/'>如此复杂</a></h2>
   </div>
   
   <div class="post_footer">
@@ -117,12 +134,6 @@
 <div class="post animated fadeInDown">
   <div class="post_title">
     <h2><a href='/posts/first-post/'>First Post</a></h2>
-  </div>
-  
-  <div class="list">
-    <div class="post_content">
-      <p>Hugo博客搭建测试。......</p>
-    </div>
   </div>
   
   <div class="post_footer">
@@ -158,48 +169,18 @@
 
 
 
-<script src="/js/jquery-3.3.1.min.js"></script>
-<script src="/js/zozo.js"></script>
-<script src="/js/highlight.pack.js"></script>
-<link  href="/css/fancybox.min.css" rel="stylesheet">
-<script src="/js/fancybox.min.js"></script>
+<script src="https://Tong-c.github.io/js/jquery-3.3.1.min.js"></script>
+<script src="https://Tong-c.github.io/js/zozo.js"></script>
+<script src="https://Tong-c.github.io/js/highlight.pack.js"></script>
+<link  href="https://Tong-c.github.io/css/fancybox.min.css" rel="stylesheet">
+<script src="https://Tong-c.github.io/js/fancybox.min.js"></script>
 
 <script>hljs.initHighlightingOnLoad()</script>
 
 
-  <script type="text/javascript" async src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-MathJax.Hub.Config({
-  tex2jax: {
-    inlineMath: [['$','$'], ['\\(','\\)']],
-    displayMath: [['$$','$$'], ['\[\[','\]\]']],
-    processEscapes: true,
-    processEnvironments: true,
-    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-    TeX: { equationNumbers: { autoNumber: "AMS" },
-         extensions: ["AMSmath.js", "AMSsymbols.js"] }
-  }
-});
 
-MathJax.Hub.Queue(function() {
-    
-    
-    
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i = 0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-});
-</script>
 
-<style>
-code.has-jax {
-    font: inherit;
-    font-size: 100%;
-    background: inherit;
-    border: inherit;
-    color: #515151;
-}
-</style>
+
 
 
 </body>

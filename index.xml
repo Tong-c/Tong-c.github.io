@@ -6,10 +6,19 @@
     <description>Recent content on 仝闯</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 30 Apr 2019 20:42:18 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 15 Jul 2019 20:46:29 +0800</lastBuildDate>
     
 	<atom:link href="https://Tong-c.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>序列化对单例模式的破坏</title>
+      <link>https://Tong-c.github.io/posts/%E5%BA%8F%E5%88%97%E5%8C%96%E5%AF%B9%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E7%9A%84%E7%A0%B4%E5%9D%8F/</link>
+      <pubDate>Mon, 15 Jul 2019 20:46:29 +0800</pubDate>
+      
+      <guid>https://Tong-c.github.io/posts/%E5%BA%8F%E5%88%97%E5%8C%96%E5%AF%B9%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E7%9A%84%E7%A0%B4%E5%9D%8F/</guid>
+      <description>单例模式举例 单例模式举例，代码如下 public class Singleton { private Singleton() { } public static Singleton getInstance() { return SingleHolder.singleton; } private static class SingleHolder { private static final Singleton singleton = new Singleton(); } } 正常对象的获取，可以保持对象的单例存在 Singleton instance1 =</description>
+    </item>
     
     <item>
       <title>如此复杂</title>
