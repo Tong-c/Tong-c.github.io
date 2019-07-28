@@ -25,15 +25,14 @@ $(document).ready((function (_this) {
   }
 })(this))
 
-// fancybox
+// nav-toggle
 $(document).ready((function (_this) {
-  return function() {
-    if ($.fancybox) {
-      $('.post_content').each(function() {
-        $(this).find('img').each(function() {
-          $(this).wrap(`<div class="fancybox"><a href="${this.src}" data-fancybox="gallery" data-caption="${this.title}"></a></div>`);
-        });
-      });
-    }
-  };
+  return function () {
+    let nav,icon
+    icon = $('#menu_icon')
+    nav = $('#site_nav')
+    icon.click(function () {
+      nav.slideToggle(250)
+    })
+  }
 })(this))
