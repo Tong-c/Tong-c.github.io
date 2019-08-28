@@ -10,6 +10,8 @@
         content="仝闯"/>
 
   
+  <meta name="description" content="/** * 冒泡排序 */ public void bubbleSort(int[] nums) { int length = nums.length; if (length &amp;lt;= 1) { return; } for (int i = 0; i &amp;lt; length; i&#43;&#43;) { boolean flag = true; for (int j = 0; j &amp;lt; length - i - 1; j&#43;&#43;)"/>
+  
 
   
   
@@ -17,13 +19,11 @@
   
 
   
-  <link rel="canonical" href="https://Tong-c.github.io/posts/"/>
+  <link rel="canonical" href="https://Tong-c.github.io/posts/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90/"/>
 
   
-  <link rel="alternate" type="application/rss&#43;xml" href="https://Tong-c.github.io/posts/index.xml">
-  
 
-  <title>Posts &middot; 仝闯</title>
+  <title>冒泡排序时间复杂度分析 &middot; 仝闯</title>
 
   <link rel="shortcut icon" href="https://Tong-c.github.io/images/favicon.ico"/>
   <link rel="stylesheet" href="https://Tong-c.github.io/css/animate.min.css"/>
@@ -89,43 +89,65 @@
 </div>
 
   <div class="content">
-    <div class="list_with_title">
-      
-      <div class="listing_title">2019</div>
-      <div class="listing">
-        
-        <div class="listing_item">
-          <div class="listing_post">
-            <a href="/posts/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90/">冒泡排序时间复杂度分析</a>
-            <div class="post_time"><span class="date">08-28</span></div>
-          </div>
+    <div class="post_page">
+      <div class="post animated fadeInDown">
+        <div class="post_title post_detail_title">
+          <h2><a href='/posts/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90/'>冒泡排序时间复杂度分析</a></h2>
+          <span class="date">2019.08.28</span>
         </div>
-        
-        <div class="listing_item">
-          <div class="listing_post">
-            <a href="/posts/%E5%BA%8F%E5%88%97%E5%8C%96%E5%AF%B9%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E7%9A%84%E7%A0%B4%E5%9D%8F/">序列化对单例模式的破坏</a>
-            <div class="post_time"><span class="date">07-15</span></div>
-          </div>
+        <div class="post_content markdown">
+
+<pre><code class="language-java">	/**
+     * 冒泡排序
+     */
+    public void bubbleSort(int[] nums) {
+        int length = nums.length;
+
+        if (length &lt;= 1) {
+            return;
+        }
+
+        for (int i = 0; i &lt; length; i++) {
+            boolean flag = true;
+            for (int j = 0; j &lt; length - i - 1; j++) {
+                if (nums[j] &gt; nums[j + 1]) {
+                    flag = false;
+                    swap(nums, j, j + 1);
+                }
+            }
+            if (flag) {
+                break;
+            }
+        }
+        System.out.println(Arrays.toString(nums));
+    }
+</code></pre>
+
+<h4 id="时间复杂度分析">时间复杂度分析</h4>
+
+<p>首先关注到冒泡排序算法过程中的两层嵌套 for 循环，会直接想到 O ( N ^ 2) 。</p>
+
+<p>再具体点讲，最好情况下，数组元素完全有序，那么只需要执行一次内部循环即可，时间复杂度为 O ( N ) ，最坏情况下，数组元素完全倒序，外部循环执行 N 次，内部循环执行 N -1 次，内外相乘为 N ( N - 1 )，忽略低阶，时间复杂度为 O ( N ^ 2 )。</p>
+
+<p>对于平均情况下的时间复杂度，可以从交换次数考虑，冒泡排序涉及的主要操作就是两个，比较和交换。</p>
+
+<p>这里引入的两个概念是“有序度”和“逆序度”，数组中的任意两个元素进行比较，如果 a &lt; b ，则有序度加一，否则逆序度加一。</p>
+
+<p>如果一个数组完全有序则为满有序度，而满有序度与数组的长度有关，设定数组的元素个数为 n ,则满有序度为 n ( n - 1 ) / 2，如果一个数组完全无序，则有序度为 0 ，</p>
+
+<p>回到交换次数上来，一个数组的排序次数就是等于数组的满有序度减去有序度，所以平均情况下的时间复杂度就是等于 ( n ( n - 1 ) / 2 + 0 ) / 2，计算结果为 n ( n - 1 ) / 4，忽略低阶时间复杂度为 O ( N ^ 2 )。</p>
+
+<h4 id="空间复杂度分析">空间复杂度分析</h4>
+
+<p>排序过程中，频繁涉及到数组元素之间的交换，但是每一次的交换都只需要一个临时空间，临时空间与数组元素大小无关，排序过程中，只需要一个临时空间就足够，所以空间复杂度为 O ( 1 )。</p>
+</div>
+        <div class="post_footer">
+          
         </div>
-        
-        <div class="listing_item">
-          <div class="listing_post">
-            <a href="/posts/%E5%A6%82%E6%AD%A4%E5%A4%8D%E6%9D%82/">如此复杂</a>
-            <div class="post_time"><span class="date">04-30</span></div>
-          </div>
-        </div>
-        
-        <div class="listing_item">
-          <div class="listing_post">
-            <a href="/posts/first-post/">First Post</a>
-            <div class="post_time"><span class="date">04-18</span></div>
-          </div>
-        </div>
-        
       </div>
       
+      
     </div>
-    <div class="pagination"></div>
   </div>
   <a id="back_to_top" href="#" class="back_to_top"><span>△</span></a>
 </div>
